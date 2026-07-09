@@ -1,0 +1,17 @@
+// 1.21.11	-999999999-01-01T00:00:00	Tailored/Block Loot Tables
+f06758e0ffa714985e32ecfde477834ab1f59061 data/tailored/loot_table/blocks/black_rug.json
+e5415c85032e252a99f28e812819d9a70a4f5a7a data/tailored/loot_table/blocks/blue_rug.json
+109c6307646a30e0b546612bcaba53a4d771f890 data/tailored/loot_table/blocks/brown_rug.json
+4dc4590b7e1fa020e7c050d6625a2e67f799db4a data/tailored/loot_table/blocks/cyan_rug.json
+21e2224888b043c0fab7e0bf95560995baa4f1dc data/tailored/loot_table/blocks/gray_rug.json
+971b72b59cb720b9845c2d03eb3bec8fa98a7cf5 data/tailored/loot_table/blocks/green_rug.json
+60780bb195764b127fa59c63991f24dd954d6a5e data/tailored/loot_table/blocks/light_blue_rug.json
+1c3d780c328e529bfacf5143a6a58aede39d2487 data/tailored/loot_table/blocks/light_gray_rug.json
+08f2f527bf7a87d92cfed5331cb118ef6e3955b5 data/tailored/loot_table/blocks/lime_rug.json
+9fe379d7af05fc37d28f284a3da4d2938a210996 data/tailored/loot_table/blocks/magenta_rug.json
+bb5f6baf2c8bffe46ba79a5f38a39a3c251fd36b data/tailored/loot_table/blocks/orange_rug.json
+d890e140995c928b72c06ad2a6a4828417119d37 data/tailored/loot_table/blocks/pink_rug.json
+e01328b2360e5088eeadf5ea1bcb969a35a48ff7 data/tailored/loot_table/blocks/purple_rug.json
+9e6b7b2f603c8f367a71de3036fdf7bd6b1cb4ae data/tailored/loot_table/blocks/red_rug.json
+5ec8a592ca3c71d77da256bc0b5b13088093572d data/tailored/loot_table/blocks/white_rug.json
+f4232c0b03e86a313f40a09923fc8af338201417 data/tailored/loot_table/blocks/yellow_rug.json

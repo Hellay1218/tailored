@@ -1,0 +1,6 @@
+{
+	"parent": "tailored:block/rug",
+	"textures": {
+		"rug": "tailored:block/lime_rug_single_center"
+	}
+}

@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "north=false,east=false,south=false,west=false": { "model": "tailored:block/magenta_rug_single" },
+    "north=true,east=false,south=false,west=false": { "model": "tailored:block/magenta_rug_single_side" , "y": -90},
+    "north=false,east=true,south=false,west=false": { "model": "tailored:block/magenta_rug_single_side"},
+    "north=false,east=false,south=true,west=false": { "model": "tailored:block/magenta_rug_single_side" , "y": 90},
+    "north=false,east=false,south=false,west=true": { "model": "tailored:block/magenta_rug_single_side" , "y": 180},
+    "north=true,east=false,south=true,west=false": { "model": "tailored:block/magenta_rug_single_center", "y": 90},
+    "north=false,east=true,south=false,west=true": { "model": "tailored:block/magenta_rug_single_center"},
+    "north=true,east=true,south=false,west=false": { "model": "tailored:block/magenta_rug_corner", "y": -90},
+    "north=false,east=true,south=true,west=false": { "model": "tailored:block/magenta_rug_corner"},
+    "north=false,east=false,south=true,west=true": { "model": "tailored:block/magenta_rug_corner", "y": 90},
+    "north=true,east=false,south=false,west=true": { "model": "tailored:block/magenta_rug_corner", "y": 180},
+    "north=true,east=true,south=true,west=false": { "model": "tailored:block/magenta_rug_side"},
+    "north=false,east=true,south=true,west=true": { "model": "tailored:block/magenta_rug_side", "y": 90},
+    "north=true,east=false,south=true,west=true": { "model": "tailored:block/magenta_rug_side", "y": 180},
+    "north=true,east=true,south=false,west=true": { "model": "tailored:block/magenta_rug_side", "y": -90},
+    "north=true,east=true,south=true,west=true": { "model": "tailored:block/magenta_rug_center", "y": -90}
+  }
+}
