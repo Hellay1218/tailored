@@ -9,6 +9,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -21,39 +22,57 @@ public class ScissorsItem extends Item {
     }
 
     @Override
-    public InteractionResult use(Level level, Player player, InteractionHand interactionHand) {
-        level.playSound(player, player.blockPosition(), SoundEvents.SNOW_GOLEM_SHEAR, SoundSource.PLAYERS, 1.0F, 1.5F);
-        return super.use(level, player, interactionHand);
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        if (player.isUsingItem() && player.getUseItem() == stack) {
+            return InteractionResult.CONSUME;
+        } // THIS FUCKASS EMOJI THING CALLED } WAS AN ISSUE FOR HALF AN HOUR CUZ I DON'T READ THE FUCKING LOGS KILL ME KILL ME NOW I DON'T WANT TO EXIST
+        // ~ Komoond she/her
+
+        // erm, it's called a curly bracket and it's not an emoji
+        // ~ _Hellay he/him
+
+        player.startUsingItem(hand);
+
+        if (!level.isClientSide()) {
+            level.playSound(null, player.blockPosition(),
+                    SoundEvents.SHEARS_SNIP, SoundSource.PLAYERS, 1.0F, 1.2F);
+        }
+
+        return InteractionResult.CONSUME;
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext useOnContext) {
-        Player player = useOnContext.getPlayer();
-        Level level = useOnContext.getLevel();
-        BlockPos blockPos = useOnContext.getClickedPos();
-        BlockState blockState = useOnContext.getLevel().getBlockState(blockPos);
-        if (blockState.getBlock() instanceof RugBlock){
+    public InteractionResult useOn(UseOnContext context) {
+        Player player = context.getPlayer();
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        BlockState state = level.getBlockState(pos);
+
+        if (state.getBlock() instanceof RugBlock) {
             if (player instanceof ServerPlayer) {
-                CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger((ServerPlayer)player, blockPos, useOnContext.getItemInHand());
+                CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger((ServerPlayer) player, pos, context.getItemInHand());
             }
-            BlockState north = level.getBlockState(blockPos.north());
-            BlockState east = level.getBlockState(blockPos.east());
-            BlockState south = level.getBlockState(blockPos.south());
-            BlockState west = level.getBlockState(blockPos.west());
 
-            BlockState blockState2 = blockState.setValue(RugBlock.CONNECT_MODE, blockState.getValue(RugBlock.CONNECT_MODE).getNext());
-            BlockState blockState3 = blockState2
-                    .setValue(RugBlock.NORTH, RugBlock.connectsTo(north , blockState2))
-                    .setValue(RugBlock.EAST, RugBlock.connectsTo(east , blockState2))
-                    .setValue(RugBlock.SOUTH, RugBlock.connectsTo(south , blockState2))
-                    .setValue(RugBlock.WEST, RugBlock.connectsTo(west , blockState2));
+            BlockState north = level.getBlockState(pos.north());
+            BlockState east = level.getBlockState(pos.east());
+            BlockState south = level.getBlockState(pos.south());
+            BlockState west = level.getBlockState(pos.west());
 
-            level.setBlockAndUpdate(blockPos, blockState3);
-            level.playSound(player, blockPos, SoundEvents.SHEARS_SNIP, SoundSource.BLOCKS, 1.0F, 1.2F);
-            level.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(player, blockState2));
+            BlockState updatedState = state.setValue(RugBlock.CONNECT_MODE,
+                    state.getValue(RugBlock.CONNECT_MODE).getNext());
+            updatedState = updatedState
+                    .setValue(RugBlock.NORTH, RugBlock.connectsTo(north, updatedState))
+                    .setValue(RugBlock.EAST, RugBlock.connectsTo(east, updatedState))
+                    .setValue(RugBlock.SOUTH, RugBlock.connectsTo(south, updatedState))
+                    .setValue(RugBlock.WEST, RugBlock.connectsTo(west, updatedState));
+
+            level.setBlockAndUpdate(pos, updatedState);
+            level.playSound(player, pos, SoundEvents.SHEARS_SNIP, SoundSource.BLOCKS, 1.0F, 1.2F);
+            level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, updatedState));
 
             return InteractionResult.SUCCESS;
         }
-        return super.useOn(useOnContext);
+        return super.useOn(context);
     }
 }
